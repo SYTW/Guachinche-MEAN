@@ -9,3 +9,24 @@ exports.guachincheList = function(req, res) {
     })
 }
 
+exports.guachinchePost = function(req, res) {
+    var data = {name: req.body['name'], direction: req.body['direction'], city: req.body['city'],mailPublisher: req.body['mailPublisher']}
+    Guachinche.count({name: req.body['name']}, function( err, count){
+        if(err) throw err
+        console.log( "Number of Guachinches:", count );
+        if (count == 0)
+        {
+            Guachinche.create(data, function(err, Guachinche){
+                if(err) 
+                    res.status(200).json({ error: err.message })
+                else 
+                    res.status(201).json({ message: 'Insertado correctamente' })
+            })
+        }
+        else
+        {
+            res.status(200).json({ message: 'Ya esta insertado' })
+        }
+    })
+   
+}
