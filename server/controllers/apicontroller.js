@@ -13,7 +13,7 @@ exports.guachinchePost = function(req, res) {
     var data = {name: req.body['name'], direction: req.body['direction'], city: req.body['city'],mailPublisher: req.body['mailPublisher']}
     Guachinche.count({name: req.body['name']}, function( err, count){
         if(err) throw err
-        console.log( "Number of Guachinches:", count );
+        console.log( "Number of Guachinches with this name:", count );
         if (count == 0)
         {
             Guachinche.create(data, function(err, Guachinche){
@@ -29,4 +29,14 @@ exports.guachinchePost = function(req, res) {
         }
     })
    
+}
+
+exports.guachinche = function(req, res) {
+    console.log("Guachinche by id")
+    Guachinche.findById(req.params.id, function(err, Guachinche) {
+        if (err) 
+            throw err
+        console.log(Guachinche)
+        res.status(200).json(Guachinche)
+    })
 }

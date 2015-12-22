@@ -4,5 +4,6 @@ var express = require('express'),
 
 router.get('/guachinches', apiController.guachincheList);
 router.post('/guachinches', apiController.guachinchePost);
+router.get('/guachinches/:id', apiController.guachinche);
 
 module.exports = router;
