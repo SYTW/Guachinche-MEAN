@@ -1,0 +1,18 @@
+<div ng-controller="listGuachincheController">
+    <div id="list" class="container">
+        <div ng-init="load()"style="margin-top: 25px">
+            <div ng-show="view">
+                <guachinche-view></guachinche-view>
+            </div>
+            <div ng-show="!view" style="margin-top: 50px">
+                <h4>Listado Guachinches</h4>
+                <div class="divider"></div>
+                <div class="row">
+                    <div ng-repeat="guachinche in guachinches | orderBy: 'name'">
+                        <guachinche-item></guachinche-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,7 +5,8 @@ var express = require('express'),
     
     
 var mongoose = require('mongoose')
-mongoose.connect("mongodb://carlota-proyecto_stw-2311157:27017/test", function(err) {
+
+mongoose.connect("mongodb://davidcr-proyecto-stw-2294520:27017/test", function(err) {
     if(err) {
         console.log('connection error', err)
     } else {
@@ -13,6 +14,7 @@ mongoose.connect("mongodb://carlota-proyecto_stw-2311157:27017/test", function(e
     }
 })
 
+app.use(express.static(__dirname + '/client'))
 app.use(express.static(__dirname + '/server/public'))
 app.use(bodyParser.json())
 
@@ -26,9 +28,10 @@ app.use(function(req, res, next) {
 app.use('/api/', routesApi)
 
 app.get('*', function(req, res){
-  res.sendFile('/public/index.html' , { root : __dirname})
+  res.sendFile('/client/index.html' , { root : __dirname})
 });
 
 console.log("https://proyecto-stw-carlota.c9users.io")
+console.log("https://proyecto-stw-davidcr.c9users.io")
 console.log(process.env.IP + ":" + process.env.PORT)
 app.listen(process.env.PORT || 8081, process.env.IP)
