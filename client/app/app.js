@@ -5,6 +5,9 @@ guachincheApp.config(function($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl : 'views/pages/home.html'
         })
+        .when('/new', {
+            templateUrl : 'views/pages/new.html'
+        })
         .otherwise({
             redirectTo: '/'
         })

@@ -13,3 +13,17 @@ directiveModule.directive('guachincheView', function() {
         templateUrl: "views/partials/view.html"
     }
 })
+
+directiveModule.directive('formAddGuachinche', function() {
+    return {
+        restrict: 'E',
+        templateUrl: "views/partials/form.html"
+    }
+})
+
+directiveModule.directive('guachincheDetail', function() {
+    return {
+        restrict: 'E',
+        templateUrl: "views/partials/preview.html"
+    }
+})

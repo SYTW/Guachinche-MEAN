@@ -1,0 +1,18 @@
+<form>
+    <div class="row">
+        <div class="col s12 m6">
+            <label>Nombre del guachinche</label>
+            <input type="text" placeholder="Guachinche Pepe" ng-model="name">
+        </div>
+        <div  class="col s12 m6">
+            <label>Municipio del guachinche</label>
+            <select class=" browser-default extra" ng-model="city" ng-options="municipio for municipio in municipios.name">
+                <option value="">{{municipio}}</option>
+            </select>
+        </div>
+    </div>
+    <label>Dirección del guachinche</label>
+    <input type="text" placeholder="Calle La Oliva, 20" ng-model="direction">
+    <label>Descripción</label>
+    <textarea class="materialize-textarea" ng-model="description"></textarea>
+</form>
