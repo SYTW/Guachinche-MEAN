@@ -4,7 +4,9 @@ var guachincheSchema = new mongoose.Schema({
   name: String,
   direction: String,
   city: String,
-  mailPublisher: String
+  description: String,
+  mailPublisher: String,
+  date: Date
 }, 
 { 
   versionKey: false

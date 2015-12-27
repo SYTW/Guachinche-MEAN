@@ -6,7 +6,7 @@ var express = require('express'),
     
 var mongoose = require('mongoose')
 
-mongoose.connect("mongodb://davidcr-proyecto-stw-2294520:27017/test", function(err) {
+mongoose.connect("mongodb://carlota-proyecto_stw-2311157:27017/test", function(err) {
     if(err) {
         console.log('connection error', err)
     } else {
