@@ -10,20 +10,38 @@ guachincheApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/new', {
             templateUrl : 'views/pages/new.html',
-            resolve : 
+            resolve : {
                 function($location, $auth) 
                 {   
                     if(!$auth.isAuthenticated())
                         $location.path('/')
                 }
+            }
             
         })
         .when('/signin', {
             templateUrl : 'views/pages/signin.html'
         })
+        .when('/profile', {
+            templateUrl: 'views/pages/profile.html',
+            resolve : {
+                function($location, $auth) 
+                {   
+                    if(!$auth.isAuthenticated())
+                        $location.path('/')
+                }
+            }
+        })
         .when('/logout', {
-            template : " ",
-            controller : 'LogOut'
+            templateUrl : 'views/pages/logout.html',
+            controller : 'LogOut',
+            resolve : {
+                function($location, $auth) 
+                {   
+                    if(!$auth.isAuthenticated())
+                        $location.path('/')
+                }
+            }
         })
         .otherwise({
             redirectTo: '/'

@@ -19,3 +19,34 @@ guachincheServicesModule.factory('guachincheService', ['$http', function($http) 
 
     return dataFactory
 }])
+
+guachincheServicesModule.factory('userService', ['$http', function ($http) {
+
+    var dataFactory = {}
+    
+    dataFactory.Save = function(userName, userEmail){
+        var model = {
+            name: userName,
+            email: userEmail
+        }
+        sessionStorage.userService = angular.toJson(model)
+    }
+    
+    dataFactory.Exist = function()
+    {
+        if (sessionStorage.userService)
+            return true
+        else
+            return false
+    }
+
+    dataFactory.Restore = function() {
+        return angular.fromJson(sessionStorage.userService)
+    }
+    
+    dataFactory.Delete = function() {
+        delete sessionStorage.userService
+    }
+
+    return dataFactory;
+}])

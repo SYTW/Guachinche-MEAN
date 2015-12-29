@@ -28,7 +28,7 @@ controllerModule.controller('listGuachincheController', function ($scope,guachin
     }
 })
 
-controllerModule.controller('createNewGuachincheController', function ($location,$scope,guachincheService) {
+controllerModule.controller('createNewGuachincheController', function ($location,$scope,guachincheService,userService) {
     
     $scope.municipios = { "name": [
         "Tacoronte", 
@@ -47,6 +47,7 @@ controllerModule.controller('createNewGuachincheController', function ($location
             direction: $scope.direction,
             city: $scope.city,
             description: $scope.description,
+            mailPublisher: userService.Restore().email
         }
         
         guachincheService.insertGuachinche(dataGuachinche)
@@ -63,11 +64,13 @@ controllerModule.controller('createNewGuachincheController', function ($location
     }
 })
 
-controllerModule.controller('LoginCtrl', function($scope,  $location, $auth) {
+controllerModule.controller('LoginCtrl', function($scope,  $location, $auth, userService) {
     
     $scope.authenticate = function() {
         $auth.authenticate('google')
         .then(function(response) {
+            console.log("mail: " + response.data.email)
+            userService.Save(response.data.name,response.data.email)
             $location.path('/')
         })
         .catch(function(response) {
@@ -80,11 +83,23 @@ controllerModule.controller('LoginCtrl', function($scope,  $location, $auth) {
 
 })
 
-controllerModule.controller('LogOut', function($auth, $location) {
+controllerModule.controller('LogOut', function($scope, $auth, $location, userService,$timeout) {
     if (!$auth.isAuthenticated()) { return; }
     $auth.logout()
     .then(function() {
         console.log("Logout correct")
-        $location.path('/')
+        $scope.userName = userService.Restore().name
+        userService.Delete()
+        $timeout(function() {
+            $location.path('/')
+        }, 5000)
     })
+})
+
+controllerModule.controller('UserProfille', function($scope,userService,$location) {
+    if (userService.Exist())
+    {
+        $scope.userMail = userService.Restore().email
+        $scope.userName = userService.Restore().name
+    }
 })
