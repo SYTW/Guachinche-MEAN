@@ -1,4 +1,8 @@
-var Guachinche = require('../model/guachinche')
+var Guachinche = require('../model/guachinche'),
+    jwt = require('jwt-simple'),
+    moment = require('moment'),
+    request = require('request'),
+    config = require('../config/config')
 
 exports.guachincheList = function(req, res) {
     Guachinche.find({}, function(err, Guachinche) {
@@ -62,19 +66,17 @@ exports.googleAuth = function(req, res) {
         // Step 2. Retrieve profile information about the current user.
         request.get({ url: peopleApiUrl, headers: headers, json: true }, function(err, response, profile) {
             if (profile.error) {
-                console.log("error: " + profile.error.message)
+                console.log("Error: " + profile.error.message)
                 return res.status(500).send({message: profile.error.message})
             }
             // Step 3a. Link user accounts.
             if (req.headers.authorization) {
-                console.log("auto: " + profile.sub)
+                console.log("Existing user: " + profile.sub)
                 var token = createJWT(profile.sub)
                 res.send({ token: token })
             } else {
                 // Step 3b. Create a new user account or return an existing one.
-                console.log("new: " + profile.name)
-                console.log("new: " + profile.email)
-                console.log("new: " + profile.sub)
+                console.log("New user: " + profile.email)
                 var token = createJWT(profile.sub)
                 res.send({ token: token, email: profile.email, name: profile.name })
             }

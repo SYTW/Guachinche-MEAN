@@ -26,7 +26,6 @@ controllerModule.controller('listGuachincheController', function ($scope,guachin
             console.log("Status Get by ID Service: ERROR")
         })
     }
-    
 })
 
 controllerModule.controller('createNewGuachincheController', function ($location,$scope,guachincheService) {
@@ -62,4 +61,30 @@ controllerModule.controller('createNewGuachincheController', function ($location
                 $scope.message = error.message
             });
     }
+})
+
+controllerModule.controller('LoginCtrl', function($scope,  $location, $auth) {
+    
+    $scope.authenticate = function() {
+        $auth.authenticate('google')
+        .then(function(response) {
+            $location.path('/')
+        })
+        .catch(function(response) {
+        })
+    }
+    
+    $scope.isAuthenticated = function() {
+        return $auth.isAuthenticated()
+    }
+
+})
+
+controllerModule.controller('LogOut', function($auth, $location) {
+    if (!$auth.isAuthenticated()) { return; }
+    $auth.logout()
+    .then(function() {
+        console.log("Logout correct")
+        $location.path('/')
+    })
 })

@@ -6,7 +6,13 @@ var express = require('express'),
     
 var mongoose = require('mongoose')
 
-mongoose.connect("mongodb://carlota-proyecto_stw-2311157:27017/test", function(err) {
+//BD URL variable
+console.log("User: " + process.env["USER"])
+var bdUrl = "mongodb://carlota-proyecto_stw-2311157:27017/test"
+if(process.env["USER"] == "davidcr")
+    bdUrl = "mongodb://davidcr-proyecto-stw-2294520:27017/test"
+
+mongoose.connect(bdUrl, function(err) {
     if(err) {
         console.log('connection error', err)
     } else {

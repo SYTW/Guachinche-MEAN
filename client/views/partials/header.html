@@ -1,11 +1,13 @@
 <div class="navbar-fixed">
     <nav class="teal">
         <div class="container">
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" ng-controller="LoginCtrl">
                 <a href="/" class="logo hide-on-small-only">GuachinchApp!</a>
                 <ul class="right">
                     <li><a href="/">Inicio</a></li>
-                    <li><a href="new">Nuevo</a></li>
+                    <li><a ng-if="isAuthenticated()" href="new">Nuevo</a></li>
+                    <li><a ng-if="!isAuthenticated()" href="signin">Acceder</a></li>
+                    <li><a ng-if="isAuthenticated()" href="profile">Perfil</a></li>
                 </ul>
             </div>
         </div>
