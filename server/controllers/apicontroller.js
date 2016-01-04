@@ -14,10 +14,19 @@ exports.guachincheList = function(req, res) {
 }
 
 exports.guachinchePost = function(req, res) {
-    var data = {name: req.body['name'], direction: req.body['direction'], city: req.body['city'],mailPublisher: req.body['mailPublisher']}
+ 
+    var data = {
+        name: req.body['name'], 
+        direction: req.body['direction'], 
+        city: req.body['city'],
+        description: req.body['description'],
+        mailPublisher: req.body['mailPublisher'], 
+        date: new Date()
+    }
+    
     Guachinche.count({name: req.body['name']}, function( err, count){
         if(err) throw err
-        console.log( "Number of Guachinches with this name:", count );
+        console.log( "Number of Guachinches:", count );
         if (count == 0)
         {
             Guachinche.create(data, function(err, Guachinche){
