@@ -54,6 +54,25 @@ exports.guachinche = function(req, res) {
     })
 }
 
+exports.releases = function(req, res) {
+    console.log("Publicador: " + req.params['id'])
+    Guachinche.find({mailPublisher: req.params['id']}, function(err, Guachinche) {
+        if (err) 
+            throw err
+        console.log(Guachinche)
+        res.status(200).json(Guachinche)
+    })
+}
+
+exports.deleteRelease = function(req, res) {
+    console.log("Borrando: " + req.params['id'])
+    Guachinche.remove({_id: req.params['id']}, function(err,removed) {
+         if (err) 
+            throw err
+        res.status(200).json({ message: 'Borrado correctamente'})
+    })
+}
+
 exports.googleAuth = function(req, res) {
     
     var accessTokenUrl = 'https://accounts.google.com/o/oauth2/token'
