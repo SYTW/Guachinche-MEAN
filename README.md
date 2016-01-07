@@ -39,7 +39,6 @@ La aplicación hace uso de REST (Representational State Transfer) para las rutas
 * GET -> /api/users/:id : Se obtiene las publicaciones de dicho usuario 
 * DELETE -> /api/users/release/:id : Se borra la publicación de dicho usuario 
 
-
 ### OAuth2
 
 Protocolo para la autenticación, en este caso se hace uso de la API de Google. Para ello, se sigue el siguiente modelo:
