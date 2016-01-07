@@ -12,6 +12,26 @@
                     <a style="margin-top: 25px" class="btn orange lighten-1" href="logout">Desconectar <i class="material-icons right">settings_power</i></a>
                 </div>
             </div>
+            <h4>Publicaciones</h4>
+            <div class="divider"></div>
+            <div ng-init="releases()">
+                <table class="bordered centered">
+                    <thead>
+                        <tr>
+                            <th data-field="name">Nombre</th>
+                            <th data-field="date">Fecha</th>
+                            <th data-field="action">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="release in releases">
+                          <td>{{ release.name }}</td>
+                          <td>{{ formatDate(release.date) }}</td>
+                          <td><a ng-click="deleteRelease($index)" class="btn red">Borrar <i class="material-icons right">remove_circle</i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

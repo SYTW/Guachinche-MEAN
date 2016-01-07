@@ -22,7 +22,16 @@ guachincheServicesModule.factory('guachincheService', ['$http', function($http) 
 
 guachincheServicesModule.factory('userService', ['$http', function ($http) {
 
-    var dataFactory = {}
+    var dataFactory = {},
+    urlBase = '/api/users'
+    
+    dataFactory.getReleasesById = function (id) {
+        return $http.get(urlBase + '/' + id)
+    }
+    
+    dataFactory.deleteReleasesById = function (id) {
+        return $http.delete(urlBase + '/release/' + id)
+    }
     
     dataFactory.Save = function(userName, userEmail){
         var model = {

@@ -102,4 +102,33 @@ controllerModule.controller('UserProfille', function($scope,userService,$locatio
         $scope.userMail = userService.Restore().email
         $scope.userName = userService.Restore().name
     }
+    
+    $scope.releases = function() {
+        userService.getReleasesById($scope.userMail)
+        .success(function (data) {
+            $scope.releases = data
+        }).
+        error(function(error) {
+            console.log("Status error: " + error.message)
+        })
+    }
+    
+    $scope.deleteRelease = function(id) {
+        console.log("Id to delete: " + $scope.releases[id]._id)
+        userService.deleteReleasesById($scope.releases[id]._id)
+        .success(function (data) {
+            console.log("Message: " + data.message)
+            $scope.releases.splice(id, 1);
+        }).
+        error(function(error) {
+            console.log("Status error: " + error.message)
+        })
+    }
+    
+    $scope.formatDate = function(date) {
+        var date = new Date(date)
+        return date.getDate() + "-" + 
+               (date.getMonth() + 1) + "-" + 
+               date.getFullYear()
+    }
 })
