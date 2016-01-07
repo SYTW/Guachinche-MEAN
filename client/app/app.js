@@ -11,7 +11,7 @@ guachincheApp.config(function($routeProvider, $locationProvider) {
         .when('/new', {
             templateUrl : 'views/pages/new.html',
             resolve : {
-                function($location, $auth) 
+                message: function($location, $auth) 
                 {   
                     if(!$auth.isAuthenticated())
                         $location.path('/')
@@ -25,7 +25,7 @@ guachincheApp.config(function($routeProvider, $locationProvider) {
         .when('/profile', {
             templateUrl: 'views/pages/profile.html',
             resolve : {
-                function($location, $auth) 
+                message: function($location, $auth) 
                 {   
                     if(!$auth.isAuthenticated())
                         $location.path('/')
@@ -36,7 +36,7 @@ guachincheApp.config(function($routeProvider, $locationProvider) {
             templateUrl : 'views/pages/logout.html',
             controller : 'LogOut',
             resolve : {
-                function($location, $auth) 
+                message: function($location, $auth) 
                 {   
                     if(!$auth.isAuthenticated())
                         $location.path('/')
