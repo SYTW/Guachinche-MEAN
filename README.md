@@ -16,6 +16,7 @@ Para el desarrollo de la aplicación se ha hecho uso de las siguientes tecnolog�
 * mongoose: para la base de datos
 * jwt-simple: para la autenticación mediante tokens
 * request: para la autorización de Google - llamadas HTTPS
+* satellizer: autenticación con AngularJS
 
 ### Servidor
 
@@ -26,6 +27,7 @@ Para el desarrollo de la aplicación se ha hecho uso de las siguientes tecnolog�
 ### Cliente
 
 * AngularJS
+* Materialize
 
 ### Uso de REST
 
@@ -59,5 +61,5 @@ El despliegue se ha realizado en Cloud9 ya que se hace uso de MongoDB en la apli
 
 ## Enlaces
 
-[GuachinchApp - David](https://proyecto-stw-davidcr.c9users.io/)
-
+[GuachinchApp](https://proyecto-stw-davidcr.c9users.io/)
+[Material Design](https://www.google.com/design/spec/material-design/introduction.html)
