@@ -62,4 +62,5 @@ El despliegue se ha realizado en Cloud9 ya que se hace uso de MongoDB en la apli
 ## Enlaces
 
 [GuachinchApp](https://proyecto-stw-davidcr.c9users.io/)
+
 [Material Design](https://www.google.com/design/spec/material-design/introduction.html)
